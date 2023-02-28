@@ -24,9 +24,9 @@ module.exports = () => {
         chunks: ['main']
       }),
       new WebpackPwaManifest({
-        name: 'My App',
-        short_name: 'My App',
-        description: 'My awesome app',
+        name: 'TextEditor',
+        short_name: 'JATE',
+        description: 'Text editor app',
         background_color: '#225ca3',
         theme_color: '#225ca3',
         start_url: './',
