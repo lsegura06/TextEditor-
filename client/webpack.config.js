@@ -20,27 +20,29 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
-        chunks: ['main']
+        template: './index.html',
+        title: 'JATE',
+        
       }),
       new WebpackPwaManifest({
         name: 'TextEditor',
         short_name: 'JATE',
         description: 'Text editor app',
-        background_color: '#225ca3',
-        theme_color: '#225ca3',
+        background_color: '#ffffff',
+        theme_color: '#ffffff',
         start_url: './',
         publicPath: './',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
-            sizes: [96, 128, 192, 256, 384, 512]
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
           }
         ]
       }),
       new InjectManifest({
-        swSrc: './src/sw.js',
-        exclude: [/\.map$/, /asset-manifest\.json$/],
+        swSrc: './src-sw.js',
+        swDest:'src-sw.js',
       })
     ],
 
@@ -56,7 +58,8 @@ module.exports = () => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread','@babel/transform-runtime']
             }
           }
         }
